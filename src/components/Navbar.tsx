@@ -40,9 +40,11 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between h-16 px-6">
-        <a href="#home" className="flex items-center gap-2">
-          <span className="text-2xl font-display font-black tracking-tight text-primary">MFK</span>
-          <span className="text-xs font-bold tracking-[0.2em] text-foreground uppercase hidden sm:block">
+        <a href="#home" className="flex items-center">
+          <span className="text-2xl font-display font-black text-primary">
+            MFK
+          </span>
+          <span className="text-sm font-bold tracking-[0.1em] text-foreground ml-2 uppercase">
             Stukadoors
           </span>
         </a>
@@ -67,7 +69,11 @@ const Navbar = () => {
           </Button>
         </div>
 
-        <button className="md:hidden p-2" onClick={() => setOpen(!open)} aria-label="Menu">
+        <button
+          className="md:hidden p-2"
+          onClick={() => setOpen(!open)}
+          aria-label="Menu"
+        >
           {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>

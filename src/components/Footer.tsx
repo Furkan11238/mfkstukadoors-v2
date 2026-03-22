@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const links = [
   { label: "Home", href: "#home" },
   { label: "Diensten", href: "#diensten" },
@@ -11,14 +13,17 @@ const Footer = () => (
     <div className="container mx-auto px-6 py-16">
       <div className="grid md:grid-cols-3 gap-12">
         <div>
-          <div className="mb-4">
-            <span className="text-2xl font-black text-primary-foreground">MFK</span>
-            <span className="text-xs font-bold tracking-[0.2em] text-primary-foreground/60 ml-2 uppercase">
+          <div className="mb-4 flex items-center">
+            <span className="text-2xl font-display font-black text-primary-foreground">
+              MFK
+            </span>
+            <span className="text-sm font-bold tracking-[0.1em] text-primary-foreground/70 ml-2 uppercase ">
               Stukadoors
             </span>
           </div>
           <p className="text-sm text-primary-foreground/50 leading-relaxed">
-            20 jaar vakmanschap in Limburg. Kwaliteit, precisie en betrouwbaarheid.
+            20 jaar vakmanschap in Limburg. Kwaliteit, precisie en
+            betrouwbaarheid.
           </p>
         </div>
 
@@ -44,16 +49,34 @@ const Footer = () => (
             Contact
           </h4>
           <div className="space-y-2 text-sm text-primary-foreground/50">
-            <p>📞 0488 83 93 92</p>
-            <p>✉ info@mfkstukadoors.be</p>
-            <p>📍 Pastoor Paquaylaan 55, 3550 Heusden-Zolder</p>
+            <p>0488 83 93 92</p>
+            <p>info@mfkstukadoors.be</p>
+            <p>Halstraat 12, 3550 Heusden-Zolder</p>
+            <p>BTW: BE0820.006.425</p>
           </div>
         </div>
       </div>
     </div>
-    <div className="border-t border-primary-foreground/10 py-6">
-      <div className="container mx-auto px-6 text-center text-xs text-primary-foreground/40">
-        © 2025 MFK Stukadoors · Alle rechten voorbehouden · Heusden-Zolder
+    <div className="container mx-auto py-8 px-6 ">
+      <div className="mb-6 h-px w-full bg-primary" />
+      <div className="flex flex-col items-center justify-between gap-4 px-6 sm:flex-row">
+        <p className="text-xs text-[#A0A0A0]">
+          © 2025 MFK Stukadoors. Alle rechten voorbehouden.
+        </p>
+        <div className="flex gap-6">
+          <Link
+            href="/terms"
+            className="text-xs text-[#A0A0A0] transition-colors hover:text-white"
+          >
+            Terms and Conditions
+          </Link>
+          <Link
+            href="/privacy-policy"
+            className="text-xs text-[#A0A0A0] transition-colors hover:text-white"
+          >
+            Privacy Policy
+          </Link>
+        </div>
       </div>
     </div>
   </footer>
