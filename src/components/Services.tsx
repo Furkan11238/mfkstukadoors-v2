@@ -14,8 +14,7 @@ const services: Service[] = [
   {
     title: "Binnenpleisterwerken",
     desc: "Strakke en duurzame binnenafwerking voor nieuwbouw en renovatie.",
-    image:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=80",
+    image: "/images/diensten/binnenpleisterwerken.webp",
   },
   {
     title: "Buitenpleisterwerken",
@@ -26,8 +25,7 @@ const services: Service[] = [
   {
     title: "Gyproc / Droge bouw",
     desc: "Snelle en nette plaatsing van gipskartonwanden en -plafonds.",
-    image:
-      "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=900&q=80",
+    image: "/images/diensten/gyproc-droge-bouw.webp",
   },
   {
     title: "Spuitplamuur",

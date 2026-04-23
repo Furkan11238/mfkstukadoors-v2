@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/section-heading";
 import {
@@ -11,6 +11,8 @@ import {
   ShieldCheck,
   Star,
   MapPinned,
+  Paperclip,
+  Paintbrush,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -58,8 +60,10 @@ const emptyForm = {
 
 const Contact = () => {
   const { toast } = useToast();
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [sending, setSending] = useState(false);
   const [form, setForm] = useState(emptyForm);
+  const [files, setFiles] = useState<File[]>([]);
 
   const set =
     (field: keyof typeof emptyForm) =>
@@ -70,16 +74,19 @@ const Contact = () => {
     e.preventDefault();
     setSending(true);
     try {
+      const body = new FormData();
+      body.append("name", form.naam);
+      body.append("email", form.email);
+      body.append("telephone", form.telefoon);
+      body.append("service", form.service);
+      body.append("message", form.bericht);
+      for (const file of files) {
+        body.append("files", file);
+      }
+
       const response = await fetch("/api/send", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: form.naam,
-          email: form.email,
-          telephone: form.telefoon,
-          service: form.service,
-          message: form.bericht,
-        }),
+        body,
       });
       if (response.ok) {
         toast({
@@ -87,10 +94,19 @@ const Contact = () => {
           description: "Wij nemen zo snel mogelijk contact met u op.",
         });
         setForm(emptyForm);
+        setFiles([]);
+        if (fileInputRef.current) fileInputRef.current.value = "";
       } else {
+        let description = "Probeer het later opnieuw.";
+        try {
+          const data = (await response.json()) as { error?: unknown };
+          if (typeof data.error === "string") description = data.error;
+        } catch {
+          /* ignore */
+        }
         toast({
           title: "Fout bij het versturen!",
-          description: "Probeer het later opnieuw.",
+          description,
         });
       }
     } catch {
@@ -119,7 +135,7 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <div className="space-y-6 mb-8">
+            <div className="space-y-6 mb-7">
               <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
                 Contactgegevens
               </p>
@@ -142,7 +158,7 @@ const Contact = () => {
                 </div>
               ))}
             </div>
-            <div className="space-y-6 pt-2 border-t border-border">
+            <div className="space-y-6 pt-1 border-t border-border">
               <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground pt-6">
                 Waarom kiezen voor ons?
               </p>
@@ -153,11 +169,25 @@ const Contact = () => {
                 />
                 <div>
                   <p className="text-sm font-semibold text-foreground">
-                    20 jaar vakmanschap
+                    15+ jaar vakmanschap
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    Meer dan twee decennia ervaring in pleisterwerken en
-                    afwerking.
+                    Ervaring in pleisterwerken en afwerking met oog voor detail.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <Paintbrush
+                  className="w-5 h-5 text-primary mt-0.5 shrink-0"
+                  strokeWidth={1.5}
+                />
+                <div>
+                  <p className="text-sm font-semibold text-foreground">
+                    Perfecte afwerking
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Strak en glad resultaat voor muren en plafonds die jaren
+                    meegaan.
                   </p>
                 </div>
               </div>
@@ -171,8 +201,8 @@ const Contact = () => {
                     Gratis & vrijblijvende offerte
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    U zit nergens aan vast. Wij komen ter plaatse en geven een
-                    eerlijke prijs.
+                    Wij komen ter plaatse en geven een eerlijke prijs zonder
+                    verplichtingen.
                   </p>
                 </div>
               </div>
@@ -183,11 +213,11 @@ const Contact = () => {
                 />
                 <div>
                   <p className="text-sm font-semibold text-foreground">
-                    Actief in heel Limburg
+                    Actief in Limburg en daarbuiten
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    Van Hasselt tot Genk en ver daarbuiten — wij komen naar u
-                    toe.
+                    Wij werken in regio Hasselt en Genk, maar ook buiten
+                    Limburg.
                   </p>
                 </div>
               </div>
@@ -271,13 +301,40 @@ const Contact = () => {
                 onChange={set("bericht")}
               />
             </div>
+            <div>
+              <label className="text-sm font-bold text-foreground mb-1.5 flex items-center gap-2">
+                <Paperclip className="w-4 h-4" strokeWidth={1.5} />
+                Bijlagen (optioneel)
+              </label>
+              <Input
+                ref={fileInputRef}
+                type="file"
+                multiple
+                accept="image/*,.pdf,.doc,.docx"
+                className="cursor-pointer"
+                onChange={(e) =>
+                  setFiles(
+                    e.target.files?.length ? Array.from(e.target.files) : [],
+                  )
+                }
+              />
+              <p className="text-xs text-muted-foreground mt-1.5">
+                Max. 5 bestanden, tot 10 MB per bestand (foto&apos;s, PDF,
+                Word).
+                {files.length > 0 ? (
+                  <span className="block mt-1 text-foreground">
+                    Geselecteerd: {files.map((f) => f.name).join(", ")}
+                  </span>
+                ) : null}
+              </p>
+            </div>
             <Button
               type="submit"
               size="lg"
               className="w-full"
               disabled={sending}
             >
-              {sending ? "Versturen..." : "Verstuur aanvraag"}
+              {sending ? "Versturen..." : "Offerte aanvragen"}
             </Button>
           </motion.form>
         </div>
