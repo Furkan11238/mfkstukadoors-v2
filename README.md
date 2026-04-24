@@ -1,73 +1,89 @@
-# Welcome to your Lovable project
+# MFK Stukadoors
 
-## Project info
+Website voor **MFK Stukadoors** — een stukadoorsbedrijf gevestigd in Heusden-Zolder met meer dan 20 jaar ervaring in pleisterwerken, gyproc, spuitplamuur, schilderwerken en renovatie in heel Limburg.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**Live site:** [www.mfkstukadoors.be](https://www.mfkstukadoors.be)
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## Tech stack
 
-**Use Lovable**
+- [Next.js 15](https://nextjs.org/) (App Router)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/) — animations
+- [Radix UI](https://www.radix-ui.com/) — accessible UI primitives
+- [Resend](https://resend.com/) — contact form email delivery
+- [next-themes](https://github.com/pacocoursey/next-themes) — theme support
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## Project structure
 
-**Use your preferred IDE**
+```
+src/
+├── app/
+│   ├── api/send/route.ts   # Contact form API route (Resend)
+│   ├── layout.tsx          # Root layout + SEO metadata
+│   ├── page.tsx            # Homepage (all sections composed here)
+│   └── globals.css
+└── components/
+    ├── Navbar.tsx
+    ├── Hero.tsx
+    ├── Services.tsx
+    ├── TrustStrip.tsx
+    ├── BeforeAfter.tsx
+    ├── Portfolio.tsx
+    ├── FAQ.tsx
+    ├── Contact.tsx
+    └── Footer.tsx
+```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Getting started
 
-Follow these steps:
+**Requirements:** Node.js 18+ and npm.
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Clone the repo
+git clone https://github.com/YOUR_USERNAME/mfk-stukadoors-2.git
+cd mfk-stukadoors-2
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Install dependencies
+npm install
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the dev server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The site will be available at [http://localhost:3000](http://localhost:3000).
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## Environment variables
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Create a `.env.local` file in the project root:
 
-## What technologies are used for this project?
+```env
+RESEND_API_KEY=your_resend_api_key
+```
 
-This project is built with:
+This is required for the contact form to send emails via the `/api/send` route.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## Available scripts
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+| Script          | Description              |
+| --------------- | ------------------------ |
+| `npm run dev`   | Start development server |
+| `npm run build` | Build for production     |
+| `npm start`     | Start production server  |
+| `npm run lint`  | Run ESLint               |
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+## Deployment
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+The site is deployed on [Vercel](https://vercel.com/). Push to `main` to trigger a new deployment. Make sure to set the `RESEND_API_KEY` environment variable in your Vercel project settings.
