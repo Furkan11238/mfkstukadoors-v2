@@ -48,7 +48,7 @@ const Footer = () => (
             </span>
           </div>
           <p className="text-sm text-primary-foreground/50 leading-relaxed mb-5">
-            17 jaar vakmanschap in Limburg. Kwaliteit, precisie en
+            20 jaar vakmanschap in Limburg. Kwaliteit, precisie en
             betrouwbaarheid.
           </p>
           <div className="flex gap-3">

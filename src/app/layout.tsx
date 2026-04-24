@@ -14,7 +14,7 @@ const SITE_URL = "https://www.mfkstukadoors.be";
 const defaultTitle =
   "Stukadoor Limburg - MFK Stukadoors | Pleisterwerken, Gyproc & Renovatie";
 const defaultDescription =
-  "MFK Stukadoors uit Heusden-Zolder: meer dan 17 jaar ervaring in binnen- en buitenpleisterwerken, gyproc, spuitplamuur, schilderwerken en renovatie in heel Limburg. Vraag uw gratis offerte aan.";
+  "MFK Stukadoors uit Heusden-Zolder: meer dan 20 jaar ervaring in binnen- en buitenpleisterwerken, gyproc, spuitplamuur, schilderwerken en renovatie in heel Limburg. Vraag uw gratis offerte aan.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

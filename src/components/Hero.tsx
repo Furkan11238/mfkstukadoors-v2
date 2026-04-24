@@ -24,7 +24,7 @@ const Hero = () => (
             Vakmanschap
           </p>
           <p className="text-sm font-medium text-muted-foreground">
-            17 jaar · Limburg
+            20 jaar · Limburg
           </p>
         </div>
         <h1 className="text-5xl lg:text-7xl font-black text-primary leading-[0.95] mb-6 tracking-tighter">

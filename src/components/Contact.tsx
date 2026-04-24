@@ -169,7 +169,7 @@ const Contact = () => {
                 />
                 <div>
                   <p className="text-sm font-semibold text-foreground">
-                    17+ jaar vakmanschap
+                    20+ jaar vakmanschap
                   </p>
                   <p className="text-sm text-muted-foreground">
                     Ervaring in pleisterwerken en afwerking met oog voor detail.
