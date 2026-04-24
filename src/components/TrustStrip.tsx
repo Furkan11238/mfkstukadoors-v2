@@ -17,7 +17,7 @@ type TextStat = {
 };
 
 const stats: (NumericStat | TextStat)[] = [
-  { kind: "number", target: 20, suffix: "+", label: "Jaar Ervaring" },
+  { kind: "number", target: 17, suffix: "+", label: "Jaar Ervaring" },
   { kind: "number", target: 500, suffix: "+", label: "Projecten Afgerond" },
   { kind: "number", target: 100, suffix: "%", label: "Gratis Offerte" },
   { kind: "text", value: "#1", label: "Stukadoor in Limburg" },

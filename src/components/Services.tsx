@@ -19,8 +19,7 @@ const services: Service[] = [
   {
     title: "Buitenpleisterwerken",
     desc: "Weerbestendige gevelbekleding die uw woning beschermt en verfraait.",
-    image:
-      "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=900&q=80",
+    image: "/images/diensten/buitenpleisterwerken.webp",
   },
   {
     title: "Gyproc / Droge bouw",
@@ -30,20 +29,17 @@ const services: Service[] = [
   {
     title: "Spuitplamuur",
     desc: "Spiegelgladde muurafwerking klaar voor schilderwerk.",
-    image:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80",
+    image: "/images/diensten/spuitplamuur.webp",
   },
   {
     title: "Schilderwerken",
     desc: "Professioneel schilderwerk binnen en buiten voor een perfect eindresultaat.",
-    image:
-      "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=900&q=80",
+    image: "/images/diensten/schilderwerken.webp",
   },
   {
     title: "Renovatie & Herstellingen",
     desc: "Herstel van beschadigde muren, scheuren en oude afwerkingen.",
-    image:
-      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80",
+    image: "/images/diensten/renovatie&herstellingen.webp",
   },
 ];
 

@@ -36,7 +36,7 @@ export default async function RealisatiePage({ params }: Props) {
 
         {/* hero image */}
         <div className="container mx-auto px-6 mt-6">
-          <div className="relative aspect-[16/7] w-full overflow-hidden rounded-3xl bg-muted">
+          <div className="relative aspect-[16/9] sm:aspect-[16/7] w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-muted">
             <Image
               src={r.images[0]}
               alt={r.label}
@@ -45,12 +45,12 @@ export default async function RealisatiePage({ params }: Props) {
               priority
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            <div className="absolute bottom-6 left-8">
-              <p className="inline-block text-xs font-bold uppercase tracking-widest text-primary mb-2 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-8 sm:right-8">
+              <p className="hidden sm:inline-block text-xs font-bold uppercase tracking-widest text-primary mb-2 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full">
                 {r.type}
               </p>
-              <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight">
+              <h1 className="text-base sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
                 {r.label}
               </h1>
             </div>

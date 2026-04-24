@@ -6,8 +6,6 @@ import Portfolio from "@/components/Portfolio";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import BeforeAfter from "@/components/BeforeAfter";
-
 export default function HomePage() {
   return (
     <>
@@ -15,7 +13,6 @@ export default function HomePage() {
       <Hero />
       <Services />
       <TrustStrip />
-      <BeforeAfter />
       <Portfolio />
       <FAQ />
       <Contact />
