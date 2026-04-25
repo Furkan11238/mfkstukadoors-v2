@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { realisaties } from "@/lib/realisaties";
+import { getSeoPageSlugs } from "@/lib/content";
 
 const BASE_URL = "https://www.mfkstukadoors.be";
 
@@ -9,6 +10,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
+  }));
+
+  const seoPageUrls = getSeoPageSlugs().map((slug) => ({
+    url: `${BASE_URL}/info/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
   }));
 
   return [
@@ -30,6 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    ...seoPageUrls,
     ...realisatieUrls,
   ];
 }

@@ -34,6 +34,7 @@ const diensten = [
   { label: "Renovatie & Herstellingen", href: "/#diensten" },
 ];
 
+
 const Footer = () => (
   <footer className="bg-dark border-t-[3px] border-primary">
     <div className="container mx-auto px-6 py-16">
