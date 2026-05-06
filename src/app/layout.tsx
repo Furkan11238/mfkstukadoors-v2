@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { Providers } from "@/components/providers";
+import { Analytics } from "@vercel/analytics/next";
+
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -109,6 +111,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   );
