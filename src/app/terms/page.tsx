@@ -5,7 +5,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Algemene voorwaarden | MFK Stukadoors",
+  title: {
+    absolute: "Algemene voorwaarden | MFK Stukadoors",
+  },
   description:
     "Algemene voorwaarden van MFK Stukadoors / MFK Pleisterwerken voor offertes, uitvoering van werken en betaling.",
   alternates: {
