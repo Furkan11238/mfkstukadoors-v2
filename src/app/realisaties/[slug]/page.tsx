@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -7,6 +8,9 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ImageGallery from "@/components/ui/ImageGallery";
+import { JsonLd } from "@/components/json-ld";
+import { SITE_URL } from "@/lib/site";
+import { titleTemplateSegment, truncateMetaDescription } from "@/lib/utils";
 
 export function generateStaticParams() {
   return realisaties.map((r) => ({ slug: r.slug }));
@@ -14,13 +18,67 @@ export function generateStaticParams() {
 
 type Props = { params: Promise<{ slug: string }> };
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const r = realisaties.find((x) => x.slug === slug);
+  if (!r) return {};
+
+  const url = `${SITE_URL}/realisaties/${slug}`;
+  const description = truncateMetaDescription(r.description);
+  const ogImageHref = new URL(r.images[0], SITE_URL).href;
+  const titleSeg = titleTemplateSegment(r.label);
+
+  return {
+    title: titleSeg,
+    description,
+    alternates: { canonical: `/realisaties/${slug}` },
+    openGraph: {
+      title: titleSeg,
+      description,
+      url,
+      type: "article",
+      locale: "nl_BE",
+      siteName: "MFK Stukadoors",
+      images: [{ url: ogImageHref, alt: r.label }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: titleSeg,
+      description,
+      images: [ogImageHref],
+    },
+  };
+}
+
 export default async function RealisatiePage({ params }: Props) {
   const { slug } = await params;
   const r = realisaties.find((x) => x.slug === slug);
   if (!r) notFound();
 
+  const pageUrl = `${SITE_URL}/realisaties/${slug}`;
+
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: SITE_URL,
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: r.label,
+              item: pageUrl,
+            },
+          ],
+        }}
+      />
       <Navbar />
       <main className="min-h-screen bg-background pb-24 pt-20">
         {/* back nav */}

@@ -20,6 +20,13 @@ function getFilePath(slug: string): string {
   return path.join(contentDir, `${slug}.md`);
 }
 
+/** Last filesystem modification time of the markdown source, if present. */
+export function getSeoPageFileMtime(slug: string): Date | undefined {
+  const filePath = getFilePath(slug);
+  if (!fs.existsSync(filePath)) return undefined;
+  return fs.statSync(filePath).mtime;
+}
+
 export function getSeoPageSlugs(): string[] {
   if (!fs.existsSync(contentDir)) return [];
   return fs

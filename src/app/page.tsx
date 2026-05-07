@@ -7,10 +7,12 @@ import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import BeforeAfter from "@/components/BeforeAfter";
+import { HomeJsonLd } from "@/components/home-json-ld";
 
 export default function HomePage() {
   return (
     <>
+      <HomeJsonLd />
       <Navbar />
       <Hero />
       <Services />

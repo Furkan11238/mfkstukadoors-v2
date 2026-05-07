@@ -2,10 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Phone, FileText } from "lucide-react";
-import { getSeoPageBySlug, getSeoPageSlugs } from "@/lib/content";
+import {
+  getSeoPageBySlug,
+  getSeoPageFileMtime,
+  getSeoPageSlugs,
+} from "@/lib/content";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { JsonLd } from "@/components/json-ld";
+import {
+  DEFAULT_OG_IMAGE_ALT,
+  DEFAULT_OG_IMAGE_PATH,
+  DEFAULT_OG_IMAGE_SIZE,
+  SITE_URL,
+} from "@/lib/site";
+import { titleTemplateSegment } from "@/lib/utils";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -18,25 +30,35 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = await getSeoPageBySlug(slug);
   if (!page) return {};
 
-  const url = `https://www.mfkstukadoors.be/info/${slug}`;
+  const url = `${SITE_URL}/info/${slug}`;
+  const titleSeg = titleTemplateSegment(page.title);
 
   return {
-    title: page.title,
+    title: titleSeg,
     description: page.description,
     keywords: page.keywords,
     alternates: { canonical: `/info/${slug}` },
     openGraph: {
-      title: page.title,
+      title: titleSeg,
       description: page.description,
       url,
       type: "article",
       locale: "nl_BE",
       siteName: "MFK Stukadoors",
+      images: [
+        {
+          url: DEFAULT_OG_IMAGE_PATH,
+          width: DEFAULT_OG_IMAGE_SIZE.width,
+          height: DEFAULT_OG_IMAGE_SIZE.height,
+          alt: DEFAULT_OG_IMAGE_ALT,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
-      title: page.title,
+      title: titleSeg,
       description: page.description,
+      images: [DEFAULT_OG_IMAGE_PATH],
     },
   };
 }
@@ -46,8 +68,57 @@ export default async function InfoPage({ params }: Props) {
   const page = await getSeoPageBySlug(slug);
   if (!page) notFound();
 
+  const pageUrl = `${SITE_URL}/info/${slug}`;
+  const contentMtime = getSeoPageFileMtime(slug);
+
+  const articleLd: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: page.title,
+    description: page.description,
+    inLanguage: "nl-BE",
+    author: {
+      "@type": "Organization",
+      name: "MFK Stukadoors",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "MFK Stukadoors",
+      url: SITE_URL,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": pageUrl,
+    },
+  };
+  if (contentMtime) {
+    articleLd.dateModified = contentMtime.toISOString();
+  }
+
   return (
     <>
+      <JsonLd data={articleLd} />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: SITE_URL,
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: page.title,
+              item: pageUrl,
+            },
+          ],
+        }}
+      />
       <Navbar />
       <main className="min-h-screen bg-background pb-24 pt-20">
         <div className="container mx-auto px-6 pt-8">

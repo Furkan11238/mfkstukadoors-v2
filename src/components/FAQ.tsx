@@ -20,8 +20,9 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
+import { faqItems, type FaqIconKey } from "@/lib/faq";
 
-const iconMap: Record<string, LucideIcon> = {
+const iconMap: Record<FaqIconKey, LucideIcon> = {
   "map-pin": MapPin,
   "file-text": FileText,
   wrench: Wrench,
@@ -32,73 +33,7 @@ const iconMap: Record<string, LucideIcon> = {
   droplet: Droplet,
 };
 
-type FAQItem = {
-  id: string;
-  icon: keyof typeof iconMap;
-  question: string;
-  answer: string;
-};
-
 export default function FAQsThree() {
-  const faqItems: FAQItem[] = [
-    {
-      id: "item-1",
-      icon: "map-pin",
-      question: "In welke regio bent u actief?",
-      answer:
-        "Wij zijn actief in heel Limburg, waaronder Kuringen, Hasselt, Genk en Beringen. Voor grotere projecten werken wij ook buiten Limburg.",
-    },
-    {
-      id: "item-2",
-      icon: "file-text",
-      question: "Hoe vraag ik een offerte aan?",
-      answer:
-        "U kan eenvoudig een offerte aanvragen via het contactformulier of telefonisch op 0488 83 93 92. Wij nemen snel contact op voor een vrijblijvende prijsopgave.",
-    },
-    {
-      id: "item-3",
-      icon: "wrench",
-      question: "Voeren jullie ook kleine herstellingen uit?",
-      answer:
-        "Ja, wij voeren zowel kleine herstellingen als grotere pleisterwerken uit. Neem gerust contact op om uw situatie te bespreken.",
-    },
-    {
-      id: "item-4",
-      icon: "clock",
-      question: "Hoe lang duurt een pleisterwerkopdracht?",
-      answer:
-        "De duurtijd hangt af van de grootte van het project. Een gemiddelde kamer is vaak klaar binnen 1 à 2 dagen, grotere projecten nemen meerdere dagen tot weken in beslag.",
-    },
-    {
-      id: "item-5",
-      icon: "building-2",
-      question: "Werken jullie voor particulieren en bedrijven?",
-      answer:
-        "Ja, wij werken voor particulieren, aannemers en bedrijven. Zowel kleine als grote projecten zijn welkom.",
-    },
-    {
-      id: "item-6",
-      icon: "layers",
-      question: "Wat is het verschil tussen dunpleister en dikpleister?",
-      answer:
-        "Dunpleister wordt in een dunne laag aangebracht en zorgt voor een zeer gladde afwerking, ideaal als voorbereiding voor schilderwerken. Dikpleister wordt gebruikt om oneffen muren uit te vlakken en grotere verschillen op te vangen.",
-    },
-    {
-      id: "item-7",
-      icon: "euro",
-      question: "Wat kost pleisterwerk per m²?",
-      answer:
-        "De prijs hangt af van verschillende factoren zoals de ondergrond, oppervlakte en afwerking. Neem contact op voor een vrijblijvende offerte op maat van uw project.",
-    },
-    {
-      id: "item-8",
-      icon: "droplet",
-      question: "Hoe lang moet pleisterwerk drogen?",
-      answer:
-        "Gemiddeld moet pleisterwerk 1 tot 2 weken drogen, afhankelijk van de dikte en ventilatie in de ruimte. Goede verluchting versnelt het droogproces.",
-    },
-  ];
-
   return (
     <section id="faq" className="bg-muted dark:bg-background py-20">
       <div className="mx-auto max-w-5xl px-4 md:px-6">

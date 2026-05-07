@@ -5,7 +5,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Privacybeleid | MFK Stukadoors",
+  title: {
+    absolute: "Privacybeleid | MFK Stukadoors",
+  },
   description:
     "Privacybeleid van MFK Stukadoors / MFK Pleisterwerken: welke gegevens wij verzamelen via het contactformulier en hoe wij die verwerken.",
   alternates: {

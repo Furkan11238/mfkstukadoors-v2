@@ -1,8 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Home } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Pagina niet gevonden",
+  description:
+    "Deze pagina bestaat niet op mfkstukadoors.be. Ga terug naar de startpagina of neem contact op.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 export default function NotFound() {
   return (
