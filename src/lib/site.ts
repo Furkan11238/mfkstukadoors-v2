@@ -1,5 +1,5 @@
 /** Canonical public site URL (with www). */
-export const SITE_URL = "https://www.mfkstukadoors.be" as const;
+export const SITE_URL = "https://mfkstukadoors.be" as const;
 
 /** Appended by root layout `metadata.title.template` after `%s`. */
 export const TITLE_TEMPLATE_SUFFIX = " | MFK Stukadoors";

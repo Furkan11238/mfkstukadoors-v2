@@ -37,7 +37,7 @@ const contactInfo = [
   {
     icon: Globe,
     label: "www.mfkstukadoors.be",
-    href: "https://www.mfkstukadoors.be",
+    href: "https://mfkstukadoors.be",
   },
 ];
 

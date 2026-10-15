@@ -2,7 +2,7 @@
 
 Website voor **MFK Stukadoors** — een stukadoorsbedrijf gevestigd in Heusden-Zolder met meer dan 20 jaar ervaring in pleisterwerken, gyproc, spuitplamuur, schilderwerken en renovatie in heel Limburg.
 
-**Live site:** [www.mfkstukadoors.be](https://www.mfkstukadoors.be)
+**Live site:** [mfkstukadoors.be](https://mfkstukadoors.be)
 
 ---
 
